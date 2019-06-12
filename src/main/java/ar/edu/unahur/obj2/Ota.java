@@ -16,6 +16,8 @@ public class Ota {
 
     public List<Vuelo> buscarVuelos(DateTime fecha, String origen, String destino) {
         String codigoProveedor = distribuidorDeTrafico.proveedor();
+
+
         // TODO Implementar
         return Collections.emptyList();
     }
