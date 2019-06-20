@@ -15,11 +15,13 @@ public class SabreAdapter implements  Adaptador {
 
     @Override
     public List<Vuelo> buscarVuelos(DateTime fecha, String origen, String destino) {
-        return null;
+
+        return sabre.buscar(fecha, origen, destino);
     }
 
     @Override
     public Boleto reservar(Vuelo vuelo, Set<Pasajero> pasajeros) {
-        return null;
+
+        return sabre.comprar(vuelo, pasajeros);
     }
 }

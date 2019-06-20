@@ -21,6 +21,7 @@ public class AmadeusAdapter implements Adaptador {
 
     @Override
     public Boleto reservar(Vuelo vuelo, Set<Pasajero> pasajeros) {
-        return null;
+
+        return amadeus.executeBook(vuelo,pasajeros);
     }
 }

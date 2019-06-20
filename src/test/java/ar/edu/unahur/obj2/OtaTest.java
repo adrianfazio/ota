@@ -42,8 +42,8 @@ public class OtaTest {
 
     @org.testng.annotations.Test
     public void testBuscarVuelos() {
-        //DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(Stream.of(amadeusAdapter,sabreAdapter,worldspanAdapter).collect(Collectors.toList());
-        //Ota ota = new Ota(distribuidorDeTrafico);
+        DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(Stream.of(amadeusAdapter,sabreAdapter,worldspanAdapter).collect(Collectors.toList()));
+        Ota ota = new Ota(distribuidorDeTrafico);
         DateTime fecha = new DateTime("2019-12-13");
 
         List<Vuelo> vuelos = ota.buscarVuelos(fecha, "BUE", "MIA");
@@ -52,8 +52,8 @@ public class OtaTest {
 
     @org.testng.annotations.Test
     public void testReservar() {
-        //DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(Stream.of(amadeusAdapter,sabreAdapter,worldspanAdapter).collect(Collectors.toList());
-        //Ota ota = new Ota(distribuidorDeTrafico);
+        DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(Stream.of(amadeusAdapter,sabreAdapter,worldspanAdapter).collect(Collectors.toList()));
+        Ota ota = new Ota(distribuidorDeTrafico);
 
         DateTime fecha = new DateTime("2019-12-13");
 

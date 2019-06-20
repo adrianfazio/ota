@@ -15,11 +15,11 @@ public class WorldspanAdapter implements Adaptador {
 
     @Override
     public List<Vuelo> buscarVuelos(DateTime fecha, String origen, String destino) {
-        return null;
+        return worldspan.searchFlights(fecha.getDayOfMonth(),fecha.getMonthOfYear(), fecha.getYear(), origen, destino);
     }
 
     @Override
     public Boleto reservar(Vuelo vuelo, Set<Pasajero> pasajeros) {
-        return null;
+        return worldspan.bookFlight(vuelo, pasajeros);
     }
 }
