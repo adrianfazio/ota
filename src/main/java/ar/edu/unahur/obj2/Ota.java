@@ -17,17 +17,17 @@ public class Ota {
     public List<Vuelo> buscarVuelos(DateTime fecha, String origen, String destino) {
         Adaptador codigoProveedor = distribuidorDeTrafico.proveedor();
 
-        distribuidorDeTrafico.proveedor().buscarVuelos(fecha, origen, destino);
+        return distribuidorDeTrafico.proveedor().buscarVuelos(fecha, origen, destino);
 
         // TODO Implementar
-        return Collections.emptyList();
+        //return Collections.emptyList();
     }
 
     public Boleto reservar(Vuelo vuelo, Set<Pasajero> pasajeros) {
         Adaptador codigoProveedor = distribuidorDeTrafico.proveedor();
-        distribuidorDeTrafico.proveedor().reservar(vuelo, pasajeros);
+        return distribuidorDeTrafico.proveedor().reservar(vuelo, pasajeros);
         // TODO Implementar
-        return null;
+        //return null;
     }
 
 
