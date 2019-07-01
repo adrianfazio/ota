@@ -25,6 +25,8 @@ public class OtaTest {
     private WorldspanAdapter worldspanAdapter;
     private List<Adaptador> adaptadores;
     private List<Adaptador> proveedoresSabre;
+    private List<Adaptador> proveedoresWorldspan;
+    private List<Adaptador> proveedoresAmadeus;
     private DistribuidorDeTrafico distribuidorDeTrafico;
 
 
@@ -40,6 +42,8 @@ public class OtaTest {
         distribuidorDeTrafico = new DistribuidorDeTrafico(adaptadores);
         ota = new Ota(distribuidorDeTrafico);
         proveedoresSabre = Stream.of(sabreAdapter).collect(Collectors.toList());
+        proveedoresWorldspan = Stream.of(worldspanAdapter).collect(Collectors.toList());
+        proveedoresAmadeus= Stream.of(amadeusAdapter).collect(Collectors.toList());
     }
 
     @org.testng.annotations.Test
@@ -53,7 +57,37 @@ public class OtaTest {
     }
 
     @org.testng.annotations.Test
-    public void testReservar() {
+    public void testBuscarVueloSabre() {
+        DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(proveedoresSabre);
+        Ota ota = new Ota(distribuidorDeTrafico);
+        DateTime fecha = new DateTime("2019-12-13");
+
+        List<Vuelo> vuelos = ota.buscarVuelos(fecha, "BUE", "MIA");
+        Assert.assertEquals(ota.buscarVuelos(fecha , "BUE","MIA"), vuelos);
+    }
+
+    @org.testng.annotations.Test
+    public void testBuscarVueloAmadeus() {
+        DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(proveedoresAmadeus);
+        Ota ota = new Ota(distribuidorDeTrafico);
+        DateTime fecha = new DateTime("2019-12-13");
+
+        List<Vuelo> vuelos = ota.buscarVuelos(fecha, "BUE", "MIA");
+        Assert.assertEquals(ota.buscarVuelos(fecha , "BUE","MIA"), vuelos);
+    }
+
+    @org.testng.annotations.Test
+    public void testBuscarVueloWorldspan() {
+        DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(proveedoresWorldspan);
+        Ota ota = new Ota(distribuidorDeTrafico);
+        DateTime fecha = new DateTime("2019-12-13");
+
+        List<Vuelo> vuelos = ota.buscarVuelos(fecha, "BUE", "MIA");
+        Assert.assertEquals(ota.buscarVuelos(fecha , "BUE","MIA"), vuelos);
+    }
+
+    @org.testng.annotations.Test
+    public void testReservarSabre() {
         DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(proveedoresSabre);
         Ota ota = new Ota(distribuidorDeTrafico);
 
@@ -63,13 +97,46 @@ public class OtaTest {
         List<Vuelo> vuelos = ota.buscarVuelos(fecha, "BUE", "MIA");
 
         Vuelo elegido =  vuelos.get(0);
-        //System.out.println(elegido);
         Set<Pasajero> pasajeros = Stream.of(new Pasajero("Juan", "Pérez", 40)).collect(Collectors.toSet());
 
         Boleto boleto = ota.reservar(elegido, pasajeros );
 
         assertEquals(boleto.getVuelo(), elegido);
+    }
+
+    @org.testng.annotations.Test
+    public void testReservarWorldspan() {
+        DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(proveedoresWorldspan);
+        Ota ota = new Ota(distribuidorDeTrafico);
+
+        DateTime fecha = new DateTime("2019-12-13");
 
 
+        List<Vuelo> vuelos = ota.buscarVuelos(fecha, "BUE", "MIA");
+
+        Vuelo elegido =  vuelos.get(0);
+        Set<Pasajero> pasajeros = Stream.of(new Pasajero("Juan", "Pérez", 40)).collect(Collectors.toSet());
+
+        Boleto boleto = ota.reservar(elegido, pasajeros );
+
+        assertEquals(boleto.getVuelo(), elegido);
+    }
+
+    @org.testng.annotations.Test
+    public void testReservarAmadeus() {
+        DistribuidorDeTrafico distribuidorDeTrafico = new DistribuidorDeTrafico(proveedoresAmadeus);
+        Ota ota = new Ota(distribuidorDeTrafico);
+
+        DateTime fecha = new DateTime("2019-12-13");
+
+
+        List<Vuelo> vuelos = ota.buscarVuelos(fecha, "BUE", "MIA");
+
+        Vuelo elegido =  vuelos.get(0);
+        Set<Pasajero> pasajeros = Stream.of(new Pasajero("Juan", "Pérez", 40)).collect(Collectors.toSet());
+
+        Boleto boleto = ota.reservar(elegido, pasajeros );
+
+        assertEquals(boleto.getVuelo(), elegido);
     }
 }
